@@ -1,0 +1,119 @@
+
+body{
+
+    margin: 0;
+    background: #eee;
+}
+
+div.container{
+    
+    width: 960px;
+    margin: auto;
+    padding: 3%;
+}
+
+div.sidebar{
+    
+    border: 1px solid grey;
+    float: left;
+    width: 24%;
+    padding-left: 10px;
+}
+
+div.content{
+
+    padding: 5px;
+    border: 1px solid grey;
+    float:left;
+    width: 70%;
+    /*background: white;*/
+    color: #333;
+}
+ 
+span.meta_comment{
+    padding: 5px;
+    color: blue;
+}
+span.likes{
+    color: blue;
+    float:left;
+    margin-left: 10px;
+    margin-right: 14px;
+    margin-top: 3px;
+    font-size: 0.9em;
+}
+
+span.date{
+    font-size: 0.7em;
+}
+
+div.full_article{
+    background: white;
+    border: 1px solid grey;
+    padding-left: 5px;
+}
+
+div.full_article img{
+    width: 200px;
+    margin-left: 35%;
+}
+
+div.article{
+        
+    border: 1px solid #777;
+    margin: 10px;
+    background: white;
+    border-radius: 2px;
+}
+
+div.article h3{
+
+    margin: 0;
+    padding: 5px;
+}
+
+div.article h3 a{
+    
+    text-decoration: none;
+}
+
+div.article h3 a:hover{
+
+    text-decoration: underline;
+}
+
+div.article p{
+
+    margin: 5px;
+}
+
+div.comments{
+    padding: 10px;
+}
+
+div.comment{
+    border: 1px solid grey;
+    background: #f7f7f7;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.errorlist{
+    list-style: none;
+    list-style-type: none;
+    color: maroon;
+    font-size: 0.8em;
+    display: block;
+}
+
+.helptext{
+    font-size: 0.8em;
+    display: block;
+    color: darkgreen;
+}
+
+input, textarea, button {
+    border: 1px solid grey;
+    border-radius: 1px;
+    display: block;
+}
+

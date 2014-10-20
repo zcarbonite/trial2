@@ -1,0 +1,1 @@
+2014-10-17 14:10:55,164 [DEBUG] django.db.backends.schema: CREATE TABLE "userprofile_userprofile" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "likes_cheese" bool NOT NULL, "pet_name" varchar(50) NOT NULL, "user_id" integer NOT NULL UNIQUE REFERENCES "auth_user" ("id")); (params [])

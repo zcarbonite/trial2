@@ -1,0 +1,70 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Wiki Articles{% endblock %}
+{% block style %}
+    <style>
+        span.likes{
+            margin-top: -25px;
+            float: right;
+        }
+    </style>
+{% endblock %}
+
+{% block sidebar %}
+    <ul>
+        <li><a href="/wiki/all/">Articles</a></li>
+        <li><a href="/wiki/create/">Create Article</a></li>
+        <li><a href="/accounts/profile/">Profile</a></li>
+        <li><a href="/accounts/register/">Register</a></li>
+        <li><a href="/accounts/login/">Login</a></li>
+        <li><a href="/admin/">Admin</a></li>
+    </ul>
+
+    <h3>search</h3>
+    {% csrf_token %}
+
+    <input type='text' id='search' name='search' />
+
+    <ul id='search-results'>
+    </ul>
+
+{% endblock %}
+
+{% block content %}
+
+<h4>Language: {{language}}</h4>
+<h4>Session Language: {{session_language}}</h4>
+{% for article in articles %}
+
+    <div class="article"> 
+        <h3><a href='/wiki/get/{{article.id}}/'>{{article.title}}</a>
+            <small>{{article.pub_date|date:"d b Y" | upper}}</small>
+        </h3>
+        <p>{{article.body | truncatewords:"10"}} </p>
+        <a href="/wiki/get/{{article.id}}/"><span class='meta_comment'>{{article.comment_set.count}} 
+                {% if article.comment_set.count == 1 %}
+                    comment
+                {% else %}
+                    comments
+                {% endif %} 
+            </span>
+        </a>
+        <a href="/wiki/get/{{article.id}}/"><span class='likes'>{{article.likes}} 
+                {% if article.likes == 1 %}
+                    person likes
+                {% else %}
+                    people like
+                {% endif %}
+                this
+            </span>
+        </a>
+    </div>
+
+{% empty %}
+    <div class='article'>
+        <h3>No articles have been published.</h3>
+    </div>
+{% endfor %}
+
+{% endblock %}

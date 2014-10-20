@@ -1,0 +1,15 @@
+from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.template import Context
+#from django.shortcuts import render_to_response
+
+# Create your views here.
+
+class HelloTemplate( TemplateView ):
+	
+	
+	def get_context_data( self, **kwargs ):
+		
+		context = super( HelloTemplate, self ).get_context_data( **kwargs )
+		context['name'] = 'Mike'
+		return context

@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+        input[type='text']{
+            width: 300px;
+        }
+
+        textarea{
+            width: 585px;
+        }
+
+        input[type='submit']{
+            float: right;
+        }
+
+        form{
+            width: 615px;
+        }
+    </style>
+{% endblock %}
+{% block sidebar %}
+<ul>
+    <li><a href="/wiki/all">Cancel</a></li>
+</ul>
+{% endblock %}
+
+{% block title %} Create Article {% endblock %}
+{% block content %}
+
+    <form action="/wiki/create/" method="POST" enctype="multipart/form-data"> 
+        {% csrf_token %} 
+        <ul>
+            {{ form.as_p }}
+        </ul>
+
+        <input type="submit" value="Create Article">
+    </form>
+{% endblock %}

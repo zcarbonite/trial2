@@ -1,0 +1,111 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{article.title}}{% endblock %}
+
+{% block style %}
+
+    <style>
+        .content{
+        }
+
+        form label{
+            display: none;
+        }
+
+        form textarea{
+            width: 98%;
+            height: 50px;
+            padding:2px 5px;
+        }
+
+        #addComment button{
+            float: left;
+            margin-left: 236px;
+            margin-top: -20px;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class='full_article'>
+        <h1>{{article.title}}
+                <small><span class='date'>{{article.pub_date}}</span></small>
+        </h1>
+        
+        <p>{{article.body | escape | linebreaks}}</p>
+        {% if article.thumbnail %}
+            <p><img src="/static/assets/uploaded_files/{{article.thumbnail}}" 
+                alt="{{article.thumbnail}}" width="200"/></p>
+        {% endif %}
+    </div>
+        <span class='likes'>{{article.likes}} 
+            {% if article.likes == 1 %}
+                person likes
+            {% else %}
+                people like
+            {% endif %} 
+            this
+        </span>
+        <a href="/wiki/like/{{article.id}}/"><b>+1</b></a>
+    <h3>Comments</h3>
+    <div class='comments'>
+        {% for comment in comments %} 
+            <div class='comment'> 
+                <p>{{comment.body | escape | linebreaks }}</p>
+            </div>
+            <span class='likes'>{{comment.likes}} 
+                {% if comment.likes == 1 %}
+                    person likes
+                {% else %}
+                    people like
+                {% endif %} 
+                this
+            </span>
+            <a href="/wiki/comment/like/{{comment.id}}/"><b>+1</b></a>
+
+        {% empty %}
+            <p>No comments.</p>
+        {% endfor %}
+        <p>
+            <button id='toggleComment' onclick='toggleCommentForm(this)'>
+                Add Comment
+            </button>
+        </p>
+        <div id='addComment' hidden='true'>
+            <form action="/wiki/comment/add/{{article.id}}/"
+             method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Comment">
+            </form>
+        </div>
+     
+    </div> 
+{% endblock %}
+
+{% block javascript %}
+    
+
+    function toggleCommentForm( element ){
+        
+        if( document.getElementById( "addComment" ).hidden ){
+            showComment();
+            element.innerHTML="Cancel"
+        } else{
+            hideComment();
+            element.innerHTML="Add Comment"
+        }
+    }
+
+    function showComment(){
+        document.getElementById( "addComment" ).hidden= false;
+        document.getElementsByTagName('textarea')[0].scrollIntoView();
+    }
+
+
+    function hideComment(){
+        document.getElementById( "addComment" ).hidden= true;
+    }
+
+{% endblock %}

@@ -1,0 +1,43 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Wiki {% endblock %}</title>
+    <link rel="stylesheet" href= {% static "assets/css/style.css" %}>
+    <script src={% static "assets/js/jquery-2.1.0.min.js" %}></script>
+    <script src={% static "assets/js/ajax.js" %}></script>
+    
+    {% block style%}
+    {% endblock %}
+</head>
+<body>
+    <div class='container'> 
+        <div class='sidebar'>
+            {% block sidebar %}
+                <ul>
+                    <li><a href="/wiki/all/">Articles</a></li>
+                    <li><a href="/wiki/create/">Create Article</a></li>
+                    <li><a href="/accounts/profile/">Profile</a></li>
+                    <li><a href="/accounts/register/">Register</a></li>
+                    <li><a href="/accounts/login/">Login</a></li>
+                    <li><a href="/admin/">Admin</a></li>
+                </ul>
+            {% endblock %}
+            <img width="223" src={% static "assets/media/excite.png" %} alt="excite.png">
+        </div>
+        <div class='content'>
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+
+    <script type='text/javascript'>
+    {% block javascript %}
+    {% endblock %} 
+    </script>
+</body>
+</html>
